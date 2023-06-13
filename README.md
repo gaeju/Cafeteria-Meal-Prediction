@@ -65,5 +65,30 @@
 [한국천문연구원_특일 정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15012690)
 
 
+## 4. 프로젝트 진행
+1. **구내식당 식수 예측**
+- 데이터 타입 변경: 일자는 datetime형식으로 변환, 머신러닝에 직접적으로 사용될 컬럼들을 수치형으로 변환 
+- 파생변수 만들기: Datetime 변수 생성, 출근인원/중식, 석식 비율, 신메뉴 여부, 공휴일 전날 여부, 조리법 추가, 식재료 추가, 이벤트날 추가, 강수량 
+- EDA
+- 모델링: 모델; LGBM
+          파라미터;중식{learning_rate=0.2567279568195348, max_depth=5, n_estimators=240}
+                  석식{learning_rate=0.2054580705739369, max_depth=3, n_estimators=222}
+- 평가: MAE
+![image](https://github.com/gaeju/Cafeteria-Meal-Prediction/assets/100760127/aabe98c2-27dd-4633-a602-fac0d6e11044)
 
+
+3. **감소 탄소배출량을 대시보드화**
+기존 식수 준비량과 예측 데이터 비교 -> 음식물쓰레기 감소량 계산 -> 탄소발생량 계산으로 확장 -> 잔반 현황 및 환경적 영향 시각화 대시보드 전사 공유 -> 잔반 감소를 위한 인식 개선
+예시)	스트림릿을 이용하여 하루 탄소 배출 감소량의 예시를 시각적으로 표현
+1인 한 끼 음식물 쓰레기량 평균:  0.09kg
+음식물 1kg 당 배출되는 온실가스 대략:1.65kg
+탄소 1kg를 없애기 위해 탄소흡수를 해야 하는 하루 소나무 수: 73
+
+-	정의
+절약한 음식물 배출량 = (1300인(중식 기준 인원, 임의로 지정) – 예측 인원) * 0.09kg
+절약한 탄소배출량 = 절약한 음식물 배출량 * 1.65kg
+소나무 몇 그루가 쉴 수 있는지 = 절약한 탄소 배출량(kg) * 73
+![image](https://github.com/gaeju/Cafeteria-Meal-Prediction/assets/100760127/42cde07d-5f55-4c27-812f-b5e61e4f52f1)
+
+ 
 
